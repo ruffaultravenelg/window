@@ -4,13 +4,12 @@
 /*
     Compile :
     cd ..
-    gcc test/main.c window.c -o prog -lgdi32
+    gcc test\resize.c window.c -o prog -lgdi32
 
 */
 
-#define WIDTH 800
+#define WIDTH 1200
 #define HEIGHT 500
-
 
 int main() {
     // Création de la fenêtre
@@ -29,9 +28,6 @@ int main() {
     // Boucle principale d'événements
     while (1) {
         
-        // Reset
-        fillRect(win, 0, 0, WIDTH, HEIGHT, white);
-        
         // Pull event
         windowEvent event = pullEvent(win);
 
@@ -39,9 +35,9 @@ int main() {
         if (event.type == EVENT_QUIT)
             break;
 
-        // Draw
+        // Resize
         if (event.type == EVENT_MOUSE_MOVE)
-            fillRect(win, 0, 0, event.mouse_move.x, event.mouse_move.y, red);
+            setWindowWidth(win, event.mouse_move.x);
 
     }
 
